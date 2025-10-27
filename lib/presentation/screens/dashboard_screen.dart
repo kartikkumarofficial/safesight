@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../controllers/dashboard_controller.dart';
+import '../../controllers/nav_controller.dart';
+import '../../controllers/user_controller.dart';
 
 class DashboardScreen extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
+  final UserController userController = Get.find<UserController>();
 
   DashboardScreen({super.key});
 
@@ -15,26 +18,7 @@ class DashboardScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFfdfaf6),
-      appBar: AppBar(
-        title: Text(
-          "SafeSight Dashboard",
-          style: GoogleFonts.nunito(
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: w * 0.04),
-            child: CircleAvatar(
-              backgroundColor: Colors.teal.shade100,
-              child: Icon(Icons.person, color: Colors.teal.shade700),
-            ),
-          )
-        ],
-      ),
+
 
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF7AB7A7),
@@ -48,23 +32,68 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding:EdgeInsets.only(right: 12,top:25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Left side: Greeting
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hey, ${userController.userName.value.isNotEmpty ? userController.userName.value : 'Guest User'} 👋',
+                        style: GoogleFonts.inter(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      // const Text(
+                      //   'Your smart surveillance dashboard.',
+                      //   style: TextStyle(
+                      //     fontSize: 16,
+                      //     color: Colors.grey,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  // Right side: Icons
+                  Row(
+                    children: [
+
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Image.asset('assets/notifications.png'),
+                      ),
+                      SizedBox(width: 15),
+                      // Profile Icon / Image
+                      GestureDetector(
+                        onTap: () {
+                          final navController = Get.find<NavController>();
+                          navController.changeTab(2);
+                        },
+                        child: Obx( () => CircleAvatar(
+                          radius: 20,
+                          backgroundColor: Colors.grey[300],
+                          backgroundImage: userController.profileImageUrl.value.isNotEmpty
+                              ? NetworkImage(userController.profileImageUrl.value)
+                              : null,
+                          child: userController.profileImageUrl.value.isEmpty
+                              ? const Icon(Icons.person, color: Colors.white)
+                              : null,
+                        ),),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+
 
             // 👋 Greeting
-            Text(
-              "Welcome back, Kartik 👋",
-              style: GoogleFonts.nunito(
-                fontSize: w * 0.06,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: h * 0.01),
-            Text(
-              "Your smart surveillance dashboard.",
-              style: GoogleFonts.nunito(
-                fontSize: w * 0.04,
-                color: Colors.grey.shade700,
-              ),
-            ),
+
 
             SizedBox(height: h * 0.03),
 

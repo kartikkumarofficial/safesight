@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safesight/presentation/profile/profile_screen.dart';
+import 'package:safesight/presentation/screens/dashboard_screen.dart';
 import 'package:safesight/presentation/screens/homescreen.dart';
 
 
@@ -15,7 +16,8 @@ class MainScaffold extends StatelessWidget {
 
   final List<Widget> screens = [
 
-   HomePage(),
+
+   DashboardScreen(),
    HomePage(),
     ProfileScreen()
 

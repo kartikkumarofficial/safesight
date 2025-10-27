@@ -29,8 +29,8 @@ class BottomNavBar extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today),
-          label: 'Bookings',
+          icon: Icon(Icons.camera),
+          label: 'Camera',
         ),
 
         BottomNavigationBarItem(
