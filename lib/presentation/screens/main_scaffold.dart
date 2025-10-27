@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:safesight/presentation/profile/profile_screen.dart';
 import 'package:safesight/presentation/screens/homescreen.dart';
+
 
 import '../../controllers/nav_controller.dart';
 import '../widgets/bottom_navigation_bar.dart';
@@ -16,7 +17,7 @@ class MainScaffold extends StatelessWidget {
 
    HomePage(),
    HomePage(),
-   HomePage(),
+    ProfileScreen()
 
   ];
 
@@ -25,7 +26,7 @@ class MainScaffold extends StatelessWidget {
     return Obx(() => Scaffold(
       backgroundColor:   Color(0xFF121212),
       body: screens[navController.selectedIndex.value],
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(navController: navController),
     ));
   }
 }
