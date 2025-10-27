@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
           width: w,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/auth/login_bg.png"),
+              image: AssetImage("assets/logo.png"),
               fit: BoxFit.cover,
               opacity: 0.12,
             ),
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
               //  Logo + Title
-              Image.asset('assets/images/eldercare_logo.png',height: h*0.17,),
+              Image.asset('assets/logo.png',height: h*0.17,),
               // Icon(Icons.favorite, color: Colors.teal.shade400, size: w * 0.14),
               SizedBox(height: h * 0.01),
               Text(
